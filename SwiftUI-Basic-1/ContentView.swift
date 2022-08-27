@@ -12,10 +12,14 @@ struct ContentView: View {
     @State var emojiCount: Int = 2
     
     var body: some View {
+        
         VStack {
-            HStack {
-                ForEach(emojis[0..<emojiCount], id: \.self) { emoji in
-                    CardView(content: emoji)
+            ScrollView {
+                LazyVGrid(columns: [GridItem(), GridItem(), GridItem()]) {
+                        ForEach(emojis[0..<emojiCount], id: \.self) { emoji in
+                            CardView(content: emoji)
+                                .aspectRatio(2/3, contentMode: .fit)
+                        }
                 }
             }
             Spacer()
@@ -34,26 +38,26 @@ struct ContentView: View {
     }
     
     var add: some View {
-        Button(action: {
+        Button {
             if emojiCount < emojis.count {
             emojiCount += 1
             }
-        }, label: {
+        } label: {
                 Image(systemName: "plus.circle.fill")
                     .font(.largeTitle)
-        })
+        }
     }
     var remove: some View {
-        Button(action: {
+        Button  {
             if emojiCount > 1 {
                 emojiCount -= 1
             }
-        }, label: {
+        } label: {
                 Image(systemName: "minus.circle.fill")
                     .font(.largeTitle)
                     
          
-        })
+        }
     }
 }
 
