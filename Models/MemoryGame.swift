@@ -8,6 +8,7 @@
 import Foundation
 
 struct MemoryGame<CardContent> where CardContent: Equatable {
+    
     private(set) var cards: Array<Card>
     
     private var indexOfTheOneAndOnlyFaceUpCard: Int? {
@@ -45,7 +46,7 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
     }
     
     struct Card: Identifiable {
-        var isFaceUp = false
+        var isFaceUp = true
         var isMatched = false
         let content: CardContent
         let id: Int
