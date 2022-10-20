@@ -60,8 +60,8 @@
 			isa = PBXGroup;
 			children = (
 				D7BDD42A28F723C9001CEBFF /* extension.swift */,
-				D7464CA428ADBD9600C2E54B /* SwiftUI_Basic_1App.swift */,
 				D7464CA628ADBD9600C2E54B /* EmojiMemoryGameView.swift */,
+				D7464CA428ADBD9600C2E54B /* SwiftUI_Basic_1App.swift */,
 				D7464CA828ADBD9A00C2E54B /* Assets.xcassets */,
 				D7464CAA28ADBD9A00C2E54B /* Preview Content */,
 			);
