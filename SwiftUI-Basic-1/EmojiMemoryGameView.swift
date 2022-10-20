@@ -11,20 +11,9 @@ struct EmojiMemoryGameView: View {
     @ObservedObject  var game: EmojiMemoryGame
     
     var body: some View {
-        
-//       VStack {
-//           ScrollView {
-//               LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))]) {
-//                    ForEach(game.cards) { card in
-        AspectVGrid(items: game.cards, aspectRatio: 2/3 , content: { card in
+        AspectVGrid(items: game.cards, aspectRatio: 2/3 ) { card in
             cardView(for: card)
-        })
-                        
-//                      }
-//                }
-//            }
-    
-        
+        }
         .foregroundColor(.red)
         .padding(.horizontal)
     }
@@ -58,6 +47,7 @@ struct CardView: View {
                     if card.isFaceUp {
                         shape.fill(.white)
                         shape.stroke(lineWidth: DrawingConstants.lineWidth)
+                        Circle().padding(5).opacity(0.5)
                         Text(card.content).font(font(in: geometry.size))
                     } else if card.isMatched {
                         shape.opacity(0.0)
@@ -76,7 +66,7 @@ struct CardView: View {
     private struct DrawingConstants {
         static let cornerRadius: CGFloat = 10
         static let lineWidth : CGFloat = 4
-        static let fontScale : CGFloat = 0.75
+        static let fontScale : CGFloat = 0.65
     }
     
 }
