@@ -18,6 +18,12 @@ extension Array {
     }
 }
 
+extension View {
+    func cardify(isFaceUp: Bool) -> some View {
+        return self.modifier(Cardify(isFaceUp: isFaceUp))
+    }
+}
+
 struct AspectVGrid<Item, ItemView>: View where ItemView: View, Item: Identifiable{
     var items: [Item]
     var aspectRatio: CGFloat
@@ -68,4 +74,10 @@ struct AspectVGrid<Item, ItemView>: View where ItemView: View, Item: Identifiabl
         }
         return floor(size.width / CGFloat(columnCount))
     }
+}
+
+public struct DrawingConstants {
+    static let cornerRadius: CGFloat = 10
+    static let lineWidth : CGFloat = 4
+    static let fontScale : CGFloat = 0.65
 }

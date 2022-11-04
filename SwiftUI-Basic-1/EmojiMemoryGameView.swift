@@ -41,39 +41,32 @@ struct CardView: View {
     }
     
     var body: some View {
-            GeometryReader(content: { geometry in
-                ZStack {
-                    let shape = RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
-                    if card.isFaceUp {
-                        shape.fill(.white)
-                        shape.stroke(lineWidth: DrawingConstants.lineWidth)
-                        Pie(startAngle: Angle(degrees: 0-90), endAngle: Angle(degrees: 110-90) ).padding(5).opacity(0.5)
-                        Text(card.content).font(font(in: geometry.size))
-                    } else if card.isMatched {
-                        shape.opacity(0.0)
-                    } else {
-                        shape.fill(.red)
-                    }
-                }
-
-            })
+        GeometryReader { geometry in
+            ZStack {
+            Pie(startAngle: Angle(degrees: 0-90),
+                endAngle: Angle(degrees: 110-90))
+                    .padding(5)
+                    .opacity(0.5)
+            Text(card.content)
+                    .rotationEffect(Angle.degrees(card.isMatched ? 360 : 0))
+                    .animation(Animation.easeIn(duration: 1))
+                    .font(font(in: geometry.size))
+            }
+            .modifier(Cardify(isFaceUp: card.isFaceUp))
+        }
     }
-    
+        
     private func font(in size: CGSize) -> Font {
         Font.system(size: min(size.width,  size.height) * DrawingConstants.fontScale)
     }
     
-    private struct DrawingConstants {
-        static let cornerRadius: CGFloat = 10
-        static let lineWidth : CGFloat = 4
-        static let fontScale : CGFloat = 0.65
-    }
+    
     
 }
 
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
+public struct ContentView_Previews: PreviewProvider {
+    public static var previews: some View {
         let game = EmojiMemoryGame()
         EmojiMemoryGameView(game: game)
             .preferredColorScheme(.light)
