@@ -13,12 +13,14 @@ struct Cardify: ViewModifier {
         ZStack {
             let shape = RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
             if isFaceUp {
-                shape.fill(.white)
+                shape.fill(.white).foregroundColor(.white)
                 shape.stroke(lineWidth: DrawingConstants.lineWidth)
                 content
             } else {
-                shape.fill(.red)
+                shape.fill()
             }
+            content
+                .opacity(isFaceUp ? 1 : 0)
         }
 
     }

@@ -49,21 +49,19 @@ struct CardView: View {
                     .opacity(0.5)
             Text(card.content)
                     .rotationEffect(Angle.degrees(card.isMatched ? 360 : 0))
-                    .animation(Animation.easeIn(duration: 1))
-                    .font(font(in: geometry.size))
+                    .animation(.linear(duration: 1).repeatForever(autoreverses: false))
+                    .font(Font.system(size: DrawingConstants.fontSize))
+                    .scaleEffect(scale(thatFits: geometry.size))
             }
-            .modifier(Cardify(isFaceUp: card.isFaceUp))
+            .cardify(isFaceUp: card.isFaceUp)
         }
     }
-        
-    private func font(in size: CGSize) -> Font {
-        Font.system(size: min(size.width,  size.height) * DrawingConstants.fontScale)
+    
+    private func scale(thatFits size: CGSize) -> CGFloat {
+        min(size.width, size.height) / (DrawingConstants.fontSize / DrawingConstants.fontScale)
     }
-    
-    
-    
+   
 }
-
 
 public struct ContentView_Previews: PreviewProvider {
     public static var previews: some View {

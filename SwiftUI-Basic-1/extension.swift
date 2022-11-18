@@ -80,4 +80,5 @@ public struct DrawingConstants {
     static let cornerRadius: CGFloat = 10
     static let lineWidth : CGFloat = 4
     static let fontScale : CGFloat = 0.65
+    static let fontSize : CGFloat = 32
 }
