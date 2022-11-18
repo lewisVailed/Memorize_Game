@@ -23,14 +23,17 @@ class EmojiMemoryGame: ObservableObject {
     
     
     var cards: Array<Card> {
-        return model.cards
+        model.cards
     }
     
     // MARK: Intent(s)
     
     func choose(_ card: Card) {
-        objectWillChange.send()
         model.choose(card)
+    }
+    
+    func shuffle() {
+        model.shuffle()
     }
     
 }
